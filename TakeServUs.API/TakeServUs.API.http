@@ -1,0 +1,6 @@
+@TakeServUs.API_HostAddress = http://localhost:5229
+
+GET {{TakeServUs.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

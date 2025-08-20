@@ -1,0 +1,52 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TakeServUs.API", "TakeServUs.API\TakeServUs.API.csproj", "{634902E0-5996-45FF-B01C-B6A17847E0B6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TakeServUs.Application", "TakeServUs.Application\TakeServUs.Application.csproj", "{67CF3B46-0E1C-4398-86FC-487FCAB9C3BB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TakeServUs.Domain", "TakeServUs.Domain\TakeServUs.Domain.csproj", "{FE6638D0-E50A-4025-A132-5D280C19D9C5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TakeServUs.Infrastructure", "TakeServUs.Infrastructure\TakeServUs.Infrastructure.csproj", "{257B11E4-6B1F-433D-902A-74073548E319}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TakeServUs.Persistence", "TakeServUs.Persistence\TakeServUs.Persistence.csproj", "{F0AA8EBB-16DD-44AD-A0DE-3816BD2EC889}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TakeServUs.Shared", "TakeServUs.Shared\TakeServUs.Shared.csproj", "{43927A9E-DF09-42E1-8015-66AFB8BEA1C6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{634902E0-5996-45FF-B01C-B6A17847E0B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{634902E0-5996-45FF-B01C-B6A17847E0B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{634902E0-5996-45FF-B01C-B6A17847E0B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{634902E0-5996-45FF-B01C-B6A17847E0B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{67CF3B46-0E1C-4398-86FC-487FCAB9C3BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67CF3B46-0E1C-4398-86FC-487FCAB9C3BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67CF3B46-0E1C-4398-86FC-487FCAB9C3BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67CF3B46-0E1C-4398-86FC-487FCAB9C3BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE6638D0-E50A-4025-A132-5D280C19D9C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE6638D0-E50A-4025-A132-5D280C19D9C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE6638D0-E50A-4025-A132-5D280C19D9C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE6638D0-E50A-4025-A132-5D280C19D9C5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{257B11E4-6B1F-433D-902A-74073548E319}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{257B11E4-6B1F-433D-902A-74073548E319}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{257B11E4-6B1F-433D-902A-74073548E319}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{257B11E4-6B1F-433D-902A-74073548E319}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F0AA8EBB-16DD-44AD-A0DE-3816BD2EC889}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F0AA8EBB-16DD-44AD-A0DE-3816BD2EC889}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F0AA8EBB-16DD-44AD-A0DE-3816BD2EC889}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F0AA8EBB-16DD-44AD-A0DE-3816BD2EC889}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43927A9E-DF09-42E1-8015-66AFB8BEA1C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43927A9E-DF09-42E1-8015-66AFB8BEA1C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43927A9E-DF09-42E1-8015-66AFB8BEA1C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43927A9E-DF09-42E1-8015-66AFB8BEA1C6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
