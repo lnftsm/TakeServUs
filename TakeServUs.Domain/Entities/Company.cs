@@ -1,5 +1,4 @@
 using TakeServUs.Domain.Common;
-using TakeServUs.Domain.Enums;
 using TakeServUs.Domain.ValueObjects;
 
 namespace TakeServUs.Domain.Entities;
