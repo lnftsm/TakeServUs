@@ -57,9 +57,24 @@ ScaffoldingReadMe.txt
 # Entity Framework
 Migrations/
 
-# appsettings
-appsettings.Development.json
-appsettings.Production.json
-
 # MacOS
 .DS_Store
+
+# API Settings
+appsettings.Development.json
+appsettings.Production.json
+appsettings.Local.json
+
+# User Secrets
+secrets.json
+
+# Environment files
+.env
+.env.local
+*.env
+
+# Database
+*.db
+*.db-shm
+*.db-wal
+
