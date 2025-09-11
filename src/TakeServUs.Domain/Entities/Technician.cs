@@ -1,4 +1,6 @@
+using System.Collections.ObjectModel;
 using TakeServUs.Domain.Common;
+using TakeServUs.Domain.ValueObjects;
 
 namespace TakeServUs.Domain.Entities
 {
@@ -8,20 +10,16 @@ namespace TakeServUs.Domain.Entities
     public Guid CompanyId { get; set; }
     public string? EmployeeCode { get; set; }
     public string? Specialization { get; set; }
-    public string? Skills { get; set; } // JSON array of skills
+    public ICollection<Skill> Skills { get; set; } = new List<Skill>();
     public bool IsAvailable { get; set; } = true;
     public double? Rating { get; set; }
     public int TotalJobsCompleted { get; set; } = 0;
 
     // Current location for real-time tracking
-    public double? CurrentLatitude { get; set; }
-    public double? CurrentLongitude { get; set; }
-    public DateTime? LastLocationUpdate { get; set; }
+    public GpsCoordinate? CurrentLocation { get; set; }
 
     // Working schedule
-    public string? WorkingDays { get; set; } // JSON array of days
-    public TimeSpan? WorkStartTime { get; set; }
-    public TimeSpan? WorkEndTime { get; set; }
+    public ICollection<DailySchedule> WorkingSchedule { get; set; } = new List<DailySchedule>();
 
     // Vehicle information
     public string? VehicleType { get; set; }
@@ -37,6 +35,8 @@ namespace TakeServUs.Domain.Entities
     {
       JobAssignments = new HashSet<JobAssignment>();
       LocationHistory = new HashSet<Location>();
+      Skills = new Collection<Skill>();
+      WorkingSchedule = new Collection<DailySchedule>();
     }
   }
 }

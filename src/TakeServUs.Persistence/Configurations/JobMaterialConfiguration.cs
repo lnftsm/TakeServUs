@@ -2,41 +2,63 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using TakeServUs.Domain.Entities;
 
-namespace TakeServUs.Infrastructure.Persistence.Configurations;
+namespace TakeServUs.Persistence.Configurations;
 
 public class JobMaterialConfiguration : IEntityTypeConfiguration<JobMaterial>
 {
   public void Configure(EntityTypeBuilder<JobMaterial> builder)
   {
-    builder.ToTable("JobMaterials");
+    builder.ToTable("job_materials");
+
     builder.HasKey(jm => jm.Id);
 
-    builder.Property(jm => jm.Quantity).HasColumnType("decimal(18,2)");
+    // Bir işte aynı malzemenin birden fazla kez eklenmesini önlemek için
+    builder.HasIndex(jm => new { jm.JobId, jm.MaterialId }).IsUnique();
 
-    builder.OwnsOne(jm => jm.UnitCost, moneyBuilder =>
-   {
-     moneyBuilder.Property(m => m.Amount).HasColumnType("decimal(18,2)").HasColumnName("UnitCost");
-     moneyBuilder.Property(m => m.Currency).HasColumnName("UnitCostCurrency");
-   });
-    builder.OwnsOne(jm => jm.UnitPrice, moneyBuilder =>
+    builder.Property(jm => jm.Quantity)
+        .HasColumnType("decimal(18,3)")
+        .IsRequired();
+
+    // Money VO'larını yapılandırma
+    builder.OwnsOne(jm => jm.UnitCost, sb =>
     {
-      moneyBuilder.Property(m => m.Amount).HasColumnType("decimal(18,2)").HasColumnName("UnitPrice");
-      moneyBuilder.Property(m => m.Currency).HasColumnName("UnitPriceCurrency");
-    });
-    builder.OwnsOne(jm => jm.TotalCost, moneyBuilder =>
-    {
-      moneyBuilder.Property(m => m.Amount).HasColumnType("decimal(18,2)").HasColumnName("TotalCost");
-      moneyBuilder.Property(m => m.Currency).HasColumnName("TotalCostCurrency");
-    });
-    builder.OwnsOne(jm => jm.TotalPrice, moneyBuilder =>
-    {
-      moneyBuilder.Property(m => m.Amount).HasColumnType("decimal(18,2)").HasColumnName("TotalPrice");
-      moneyBuilder.Property(m => m.Currency).HasColumnName("TotalPriceCurrency");
+      sb.Property(p => p.Amount).HasColumnName("unit_cost_amount").HasColumnType("decimal(18,2)");
+      sb.Property(p => p.Currency).HasColumnName("unit_cost_currency");
     });
 
+    builder.OwnsOne(jm => jm.UnitPrice, sb =>
+    {
+      sb.Property(p => p.Amount).HasColumnName("unit_price_amount").HasColumnType("decimal(18,2)");
+      sb.Property(p => p.Currency).HasColumnName("unit_price_currency");
+    });
 
-    builder.HasOne(jm => jm.Job).WithMany(j => j.JobMaterials).HasForeignKey(jm => jm.JobId);
-    builder.HasOne(jm => jm.Material).WithMany(m => m.JobMaterials).HasForeignKey(jm => jm.MaterialId);
-    builder.HasOne(jm => jm.UsedByTechnician).WithMany().HasForeignKey(jm => jm.UsedByTechnicianId);
+    builder.OwnsOne(jm => jm.TotalCost, sb =>
+    {
+      sb.Property(p => p.Amount).HasColumnName("total_cost_amount").HasColumnType("decimal(18,2)");
+      sb.Property(p => p.Currency).HasColumnName("total_cost_currency");
+    });
+
+    builder.OwnsOne(jm => jm.TotalPrice, sb =>
+    {
+      sb.Property(p => p.Amount).HasColumnName("total_price_amount").HasColumnType("decimal(18,2)");
+      sb.Property(p => p.Currency).HasColumnName("total_price_currency");
+    });
+
+    // İlişkiler
+    builder.HasOne(jm => jm.Job)
+        .WithMany(j => j.JobMaterials)
+        .HasForeignKey(jm => jm.JobId)
+        .OnDelete(DeleteBehavior.Cascade);
+
+    builder.HasOne(jm => jm.Material)
+        .WithMany(m => m.JobMaterials)
+        .HasForeignKey(jm => jm.MaterialId)
+        .OnDelete(DeleteBehavior.Restrict);
+
+    builder.HasOne(jm => jm.UsedByTechnician)
+        .WithMany()
+        .HasForeignKey(jm => jm.UsedByTechnicianId)
+        .IsRequired(false)
+        .OnDelete(DeleteBehavior.SetNull);
   }
 }

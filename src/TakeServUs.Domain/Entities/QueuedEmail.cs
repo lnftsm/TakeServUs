@@ -4,7 +4,7 @@ namespace TakeServUs.Domain.Entities;
 
 public class QueuedEmail : BaseEntity
 {
-  public string From { get; set; } = "noreply@takeserv.us";
+  public string From { get; set; } = "noreply@takeservus.com";
   public required string To { get; set; }
   public required string Subject { get; set; }
   public required string Body { get; set; }

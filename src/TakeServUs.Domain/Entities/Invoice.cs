@@ -6,7 +6,7 @@ namespace TakeServUs.Domain.Entities;
 
 public class Invoice : AuditableSoftDeletableEntity
 {
-  public required string InvoiceNumber { get; set; }
+  public required InvoiceNumber InvoiceNumber { get; set; }
   public Guid JobId { get; set; }
   public Guid CustomerId { get; set; }
   public required DateTime InvoiceDate { get; set; }
@@ -22,6 +22,8 @@ public class Invoice : AuditableSoftDeletableEntity
   public string? PaymentReference { get; set; }
   public string? Terms { get; set; }
   public string? Notes { get; set; }
+  public bool IsSent { get; set; } = false;
+  public DateTime? SentAt { get; set; }
 
   // Relations
   public virtual Job Job { get; set; } = default!;

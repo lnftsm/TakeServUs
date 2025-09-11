@@ -7,13 +7,12 @@ public class Address : ValueObject
   public string State { get; private set; } = string.Empty;
   public string PostalCode { get; private set; } = string.Empty;
   public string Country { get; private set; } = string.Empty;
-  public decimal? Latitude { get; private set; }
-  public decimal? Longitude { get; private set; }
+  public GpsCoordinate Coordinates { get; set; } = default!;
 
   private Address() { }
 
   public Address(string street, string city, string state, string postalCode, string country,
-                  decimal? latitude = null, decimal? longitude = null)
+                  GpsCoordinate coordinates)
   {
     if (string.IsNullOrWhiteSpace(street)) throw new ArgumentException(nameof(street));
     if (string.IsNullOrWhiteSpace(city)) throw new ArgumentException(nameof(city));
@@ -26,8 +25,7 @@ public class Address : ValueObject
     State = state.Trim();
     PostalCode = postalCode.Trim();
     Country = country.Trim();
-    Latitude = latitude;
-    Longitude = longitude;
+    Coordinates = coordinates;
   }
 
   public override string ToString()
@@ -36,7 +34,7 @@ public class Address : ValueObject
     return string.Join(", ", parts.Where(x => !string.IsNullOrWhiteSpace(x)));
   }
 
-  public bool HasCoordinates() => Latitude.HasValue && Longitude.HasValue;
+  public bool HasCoordinates() => Coordinates != null;
 
   protected override IEnumerable<object?> GetEqualityComponents()
   {
@@ -45,7 +43,6 @@ public class Address : ValueObject
     yield return State;
     yield return PostalCode;
     yield return Country;
-    yield return Latitude;
-    yield return Longitude;
+    yield return Coordinates;
   }
 }

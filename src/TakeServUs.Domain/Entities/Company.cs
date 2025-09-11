@@ -10,7 +10,7 @@ public class Company : AuditableSoftDeletableEntity
   public string? LogoUrl { get; set; }
   public required Address Address { get; set; }
   public required PhoneNumber PhoneNumber { get; set; }
-  public required string Email { get; set; }
+  public required Email Email { get; set; }
   public string? Website { get; set; }
   public string? TaxNumber { get; set; }
   public string? RegistrationNumber { get; set; }

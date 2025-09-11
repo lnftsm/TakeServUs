@@ -31,8 +31,8 @@ public class Job : AuditableSoftDeletableEntity
   // Additional Info
   public string? Notes { get; set; }
   public string? InternalNotes { get; set; }
-  public string? PhotoUrls { get; set; } // JSON array of photo URLs
-  public string? Attachments { get; set; } // JSON array of attachment URLs
+  public ICollection<string> PhotoUrls { get; set; } = new List<string>();
+  public ICollection<string> Attachments { get; set; } = new List<string>();
   public string? SignatureUrl { get; set; }
   public bool RequiresCustomerSignature { get; set; }
   public bool IsRecurring { get; set; }

@@ -14,7 +14,7 @@ namespace TakeServUs.Domain.Entities
     public DateTime? ReadAt { get; set; }
     public bool IsSent { get; set; } = false;
     public DateTime? SentAt { get; set; }
-    public string? Channel { get; set; } // Email, SMS, Push, InApp
+    public NotificationChannel Channel { get; set; } = NotificationChannel.InAppNotification;
 
     // Relations
     public virtual User User { get; set; } = default!;

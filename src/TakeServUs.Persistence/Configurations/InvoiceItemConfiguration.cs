@@ -2,27 +2,40 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using TakeServUs.Domain.Entities;
 
-namespace TakeServUs.Infrastructure.Persistence.Configurations;
+namespace TakeServUs.Persistence.Configurations;
 
 public class InvoiceItemConfiguration : IEntityTypeConfiguration<InvoiceItem>
 {
   public void Configure(EntityTypeBuilder<InvoiceItem> builder)
   {
-    builder.ToTable("InvoiceItems");
+    builder.ToTable("invoice_items");
+
     builder.HasKey(i => i.Id);
 
-    builder.Property(i => i.Description).IsRequired().HasMaxLength(500);
-    builder.Property(i => i.Quantity).HasColumnType("decimal(18,2)");
+    builder.Property(i => i.Description)
+        .IsRequired()
+        .HasMaxLength(500);
 
-    builder.OwnsOne(i => i.UnitPrice, moneyBuilder =>
+    builder.Property(i => i.Quantity)
+        .HasColumnType("decimal(18,2)")
+        .IsRequired();
+
+    // Money VO'larını yapılandırma
+    builder.OwnsOne(i => i.UnitPrice, sb =>
     {
-      moneyBuilder.Property(m => m.Amount).HasColumnType("decimal(18,2)").HasColumnName("UnitPrice");
-      moneyBuilder.Property(m => m.Currency).HasColumnName("UnitPriceCurrency");
+      sb.Property(m => m.Amount).HasColumnName("unit_price_amount").HasColumnType("decimal(18,2)");
+      sb.Property(m => m.Currency).HasColumnName("unit_price_currency");
     });
-    builder.OwnsOne(i => i.TotalPrice, moneyBuilder =>
+
+    builder.OwnsOne(i => i.TotalPrice, sb =>
     {
-      moneyBuilder.Property(m => m.Amount).HasColumnType("decimal(18,2)").HasColumnName("TotalPrice");
-      moneyBuilder.Property(m => m.Currency).HasColumnName("TotalPriceCurrency");
+      sb.Property(m => m.Amount).HasColumnName("total_price_amount").HasColumnType("decimal(18,2)");
+      sb.Property(m => m.Currency).HasColumnName("total_price_currency");
     });
+
+    // İlişki
+    builder.HasOne(i => i.Invoice)
+        .WithMany(inv => inv.Items)
+        .HasForeignKey(i => i.InvoiceId);
   }
 }

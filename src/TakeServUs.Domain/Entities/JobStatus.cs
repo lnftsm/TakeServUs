@@ -1,5 +1,6 @@
 using TakeServUs.Domain.Common;
 using TakeServUs.Domain.Enums;
+using TakeServUs.Domain.ValueObjects;
 
 namespace TakeServUs.Domain.Entities;
 
@@ -10,8 +11,7 @@ public class JobStatus : AuditableEntity
   public DateTime ChangedAt { get; set; }
   public string? ChangedBy { get; set; }
   public string? Notes { get; set; }
-  public double? Latitude { get; set; }
-  public double? Longitude { get; set; }
+  public GpsCoordinate? Location { get; set; }
 
   // Relations
   public virtual Job Job { get; set; } = default!;
